@@ -26,7 +26,9 @@ The code computes equilibrium prices of the modified economy of the paper by the
 
 ## Install and run
 
-The runs were made with Julia 1.13.3; the package versions (JuMP, Ipopt, NLopt) are fixed in `Manifest.toml`. With another Julia version, `Pkg.instantiate()` may resolve other package versions, and the iterates may differ in the last digits.
+The stored outputs in `results/` and `experiments/results/` were computed on Linux x86_64 with Julia 1.13.3; the package versions (JuMP, Ipopt, NLopt) are fixed in `Manifest.toml`.
+On another platform or Julia version the iterates differ from the stored ones by rounding, and the differences grow along the iterations: $\kappa$ along the iterations, the number of agent solves and the modified prices $\tilde p$ change.
+The prices $(p,q)$ do not: a run on macOS gave the same $(p,q)$ to five digits in Examples 4.1, 4.2.1 and 4.3.
 
     julia --project=. -e 'using Pkg; Pkg.instantiate()'
     julia --project=. run_all.jl              # Table 3, results/ (about 8 minutes)
@@ -71,6 +73,8 @@ The runs were made with Julia 1.13.3; the package versions (JuMP, Ipopt, NLopt) 
 The agents' problems are solved with Ipopt (`tol = 1e-10`, `acceptable_tol = 1e-8`, `max_iter = 500`).
 In `run_all.jl` (Table 3) a failure on an agent's problem is penalized: Phase II assigns a very low value and the refinement a large residual to that price.
 In `experiments/` (Section 4.4) the problem is first solved once more from the endowment and a zero portfolio, and both solves are counted (`retry = true` in `Economy`).
+Note on the revised manuscript of 19 Nov 2026: Section 4 describes this retry for all runs; the runs of Table 3 and Figures 2 to 5 were made without it, as above.
+With the retry, Example 4.3 in `run_all.jl` ends at another point of the same set of equilibrium prices, with the same $(p,q)$, after a different number of iterations and agent solves.
 Phase II uses BOBYQA with `ftol_rel = xtol_rel = 1e-6`.
 When $M_1(\tilde p)$ does not have full column rank, each agent's net position is replaced by the net position of minimum norm with the same payoffs.
 
