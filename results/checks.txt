@@ -1,0 +1,13 @@
+Final prices of run_all.jl
+4.1    kappa 6.58e-08  rank M1 2  max c/m 0.598  max w/m 0.000  max position/M 0.208  max |net position| 10.962
+4.2.1  kappa 7.96e-08  rank M1 2  max c/m 0.648  max w/m 0.000  max position/M 0.180  max |net position| 1.958
+       4.2.1: largest index prod_l c^alpha over agents and states 3.10 (K = 5.7)
+4.2.2  kappa 1.75e-01  rank M1 2  max c/m 0.805  max w/m 0.000  max position/M 0.715  max |net position| 62.006
+       4.2.2: relative prices of good 2 in the second-stage states 0.872, 0.882, 0.887
+       4.2.2: absolute contract positions between 55.4 and 62.0
+4.3    kappa 3.41e-08  rank M1 2  max c/m 0.589  max w/m 0.003  max position/M 0.504  max |net position| 0.762
+       4.3: a = (1.0910, 1.0836, 1.1238, 1.1892, 1.1376), b = (0.8634, 0.9567, 0.8870, 0.9378, 0.9863)
+Table 4 (Example 4.1)
+[14, Ex. 1]  p1 = 0.7307 0.7709 0.7144 0.6574  q = 0.9194, 0.6546  rate 8.77%  max|Z| 1.81e-01
+[9, 5.1]     p1 = 0.7375 0.7817 0.7176 0.6631  q = 0.9202, 0.6611  rate 8.67%  max|Z| 2.18e-01
+this paper   p1 = 0.7349 0.7755 0.7194 0.6634  q = 0.9204, 0.6601  rate 8.65%  max|Z| 9.96e-04

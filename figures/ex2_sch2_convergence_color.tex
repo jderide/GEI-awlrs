@@ -1,0 +1,43 @@
+\documentclass[border=2pt]{standalone}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+\pgfplotsset{compat=1.16}
+\definecolor{cbblue}{RGB}{0,114,178}
+\definecolor{cborange}{RGB}{213,94,0}
+\definecolor{cbgreen}{RGB}{0,158,115}
+\definecolor{cbred}{RGB}{204,121,167}
+\definecolor{cbpurple}{RGB}{86,180,233}
+\pgfplotsset{
+  every axis/.append style={font=\footnotesize, tick label style={font=\scriptsize},
+    label style={font=\footnotesize}, title style={font=\footnotesize, yshift=-3pt},
+    legend style={font=\scriptsize, draw=none, fill=none, legend cell align=left},
+    axis line style={line width=0.4pt}, tick style={line width=0.4pt, black},
+    grid=major, grid style={line width=0.2pt, black!15}},
+  every axis plot/.append style={line width=0.7pt, mark size=1.1pt},
+}
+\begin{document}
+\usetikzlibrary{calc}
+\begin{tikzpicture}
+\begin{semilogyaxis}[width=8.4cm, height=5.6cm, xlabel={iteration $\nu$}, title={Example 4.2.1},
+  xmin=0, xmax=51.5, ymin=1e-8, ymax=1e3, clip=true,
+  ytick={1e-8,1e-6,1e-4,1e-2,1e0,1e2}, legend pos=south west,
+  extra x ticks={51}, extra x tick labels={ref.}, extra x tick style={grid=none, tick label style={yshift=-7pt}}]
+\addplot[solid, black, line width=1.1pt, unbounded coords=jump] table[col sep=comma, x=it, y=certificate, restrict x to domain=0:50] {../results/ex2_sch2_history.csv};
+\addlegendentry{certificate}
+\addplot[black, line width=0.3pt, mark=*, mark size=1.4pt, forget plot, unbounded coords=jump] table[col sep=comma, x=it, y=certificate, restrict x to domain=50:51] {../results/ex2_sch2_history.csv};
+\addplot[densely dashed, cbblue, , unbounded coords=jump] table[col sep=comma, x=it, y=ES_neg, restrict x to domain=0:50] {../results/ex2_sch2_history.csv};
+\addlegendentry{$\|ES^-\|_\infty$}
+\addplot[cbblue, line width=0.3pt, mark=square*, mark size=1.4pt, forget plot, unbounded coords=jump] table[col sep=comma, x=it, y=ES_neg, restrict x to domain=50:51] {../results/ex2_sch2_history.csv};
+\addplot[densely dotted, cborange, , unbounded coords=jump] table[col sep=comma, x=it, y=complementarity, restrict x to domain=0:50] {../results/ex2_sch2_history.csv};
+\addlegendentry{$\max_{\xi,l}\tilde p_{\xi,l}|ES_{\xi,l}|$}
+\addplot[cborange, line width=0.3pt, mark=triangle*, mark size=1.4pt, forget plot, unbounded coords=jump] table[col sep=comma, x=it, y=complementarity, restrict x to domain=50:51] {../results/ex2_sch2_history.csv};
+\addplot[dashdotted, cbgreen, , unbounded coords=jump] table[col sep=comma, x=it, y=Z_inf, restrict x to domain=0:50] {../results/ex2_sch2_history.csv};
+\addlegendentry{$\|Z\|_\infty$}
+\addplot[cbgreen, line width=0.3pt, mark=o, mark size=1.4pt, forget plot, unbounded coords=jump] table[col sep=comma, x=it, y=Z_inf, restrict x to domain=50:51] {../results/ex2_sch2_history.csv};
+\draw[black!50, line width=0.3pt, densely dotted] (axis cs:50.5,1e-9) -- (axis cs:50.5,1e3);
+
+\end{semilogyaxis}
+\end{tikzpicture}
+
+\end{document}

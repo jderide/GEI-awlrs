@@ -1,0 +1,32 @@
+iterations (augmented Walrasian): 50
+certificate after augmented Walrasian: 2.836e-02
+certificate (final): 6.481e-08
+agent problems solved: 42375
+portfolio bound active: false
+rank of M1 at the final prices: 2 (contracts: 2)
+modified prices p~ (rows goods, columns nodes):
+   1.00000    0.28902    0.30629    0.32505
+   0.73487    0.22412    0.22036    0.21564
+prices p = p~[:,s] / p~[1,s]:
+   1.00000    1.00000    1.00000    1.00000
+   0.73487    0.77547    0.71944    0.66341
+state prices sigma:    0.28902    0.30629    0.32505
+contract prices q:    0.92035    0.66012
+interest rate 1/q_1 - 1: 0.0865
+largest utility index at the solution: 2.1144 (bliss level K = 5.7)
+ES:
+  -0.00000   -0.00000   -0.00000   -0.00000
+  -0.00000   -0.00000   -0.00000   -0.00000
+Z:    0.00000    0.00000
+agent 1: net portfolio z =   -6.71007   10.96191
+agent 1: consumption c =
+   0.60230    0.76650    0.72395    0.68139
+   2.45882    2.96532    3.01880    3.08132
+agent 2: net portfolio z =    3.35504   -5.48096
+agent 2: consumption c =
+   1.69885    2.36675    2.13803    1.90930
+   0.77059    1.01734    0.99060    0.95934
+agent 3: net portfolio z =    3.35504   -5.48096
+agent 3: consumption c =
+   1.69885    2.36675    2.13803    1.90930
+   0.77059    1.01734    0.99060    0.95934

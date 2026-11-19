@@ -1,0 +1,45 @@
+\documentclass[border=2pt]{standalone}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+\pgfplotsset{compat=1.16}
+\definecolor{cbblue}{RGB}{0,114,178}
+\definecolor{cborange}{RGB}{213,94,0}
+\definecolor{cbgreen}{RGB}{0,158,115}
+\definecolor{cbred}{RGB}{204,121,167}
+\definecolor{cbpurple}{RGB}{86,180,233}
+\pgfplotsset{
+  every axis/.append style={font=\footnotesize, tick label style={font=\scriptsize},
+    label style={font=\footnotesize}, title style={font=\footnotesize, yshift=-3pt},
+    legend style={font=\scriptsize, draw=none, fill=none, legend cell align=left},
+    axis line style={line width=0.4pt}, tick style={line width=0.4pt, black},
+    grid=major, grid style={line width=0.2pt, black!15}},
+  every axis plot/.append style={line width=0.7pt, mark size=1.1pt},
+}
+\begin{document}
+\usetikzlibrary{calc}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=4 by 1, horizontal sep=0.75cm}, width=4.7cm, height=4.6cm, xmin=1, xmax=51, xlabel={iteration $\nu$}]
+\nextgroupplot[title={first stage}, ylabel={excess supply $ES_{\xi,l}$}, legend to name=goodlegend, legend columns=2, legend style={/tikz/every even column/.append style={column sep=6pt}}]
+\addplot[black!40, line width=0.3pt, forget plot, domain=1:51, samples=2] {0};
+\addplot[solid, black, mark=*, mark repeat=8, mark phase=1] table[col sep=comma, x=it, y=ES_1_1, restrict x to domain=1:51] {../results/ex2_sch3_history.csv};
+\addlegendentry{good $l=0$}
+\addplot[densely dashed, cbblue, mark=square*, mark repeat=8, mark phase=2] table[col sep=comma, x=it, y=ES_2_1, restrict x to domain=1:51] {../results/ex2_sch3_history.csv};
+\addlegendentry{good $l=1$}
+\nextgroupplot[title={scenario $\xi=1$}]
+\addplot[black!40, line width=0.3pt, forget plot, domain=1:51, samples=2] {0};
+\addplot[solid, black, mark=*, mark repeat=8, mark phase=1] table[col sep=comma, x=it, y=ES_1_2, restrict x to domain=1:51] {../results/ex2_sch3_history.csv};
+\addplot[densely dashed, cbblue, mark=square*, mark repeat=8, mark phase=2] table[col sep=comma, x=it, y=ES_2_2, restrict x to domain=1:51] {../results/ex2_sch3_history.csv};
+\nextgroupplot[title={scenario $\xi=2$}]
+\addplot[black!40, line width=0.3pt, forget plot, domain=1:51, samples=2] {0};
+\addplot[solid, black, mark=*, mark repeat=8, mark phase=1] table[col sep=comma, x=it, y=ES_1_3, restrict x to domain=1:51] {../results/ex2_sch3_history.csv};
+\addplot[densely dashed, cbblue, mark=square*, mark repeat=8, mark phase=2] table[col sep=comma, x=it, y=ES_2_3, restrict x to domain=1:51] {../results/ex2_sch3_history.csv};
+\nextgroupplot[title={scenario $\xi=3$}]
+\addplot[black!40, line width=0.3pt, forget plot, domain=1:51, samples=2] {0};
+\addplot[solid, black, mark=*, mark repeat=8, mark phase=1] table[col sep=comma, x=it, y=ES_1_4, restrict x to domain=1:51] {../results/ex2_sch3_history.csv};
+\addplot[densely dashed, cbblue, mark=square*, mark repeat=8, mark phase=2] table[col sep=comma, x=it, y=ES_2_4, restrict x to domain=1:51] {../results/ex2_sch3_history.csv};
+\end{groupplot}
+\node[anchor=north] at ($(group c1r1.south west)!0.5!(group c4r1.south east)+(0,-0.85cm)$) {\pgfplotslegendfromname{goodlegend}};
+\end{tikzpicture}
+
+\end{document}
